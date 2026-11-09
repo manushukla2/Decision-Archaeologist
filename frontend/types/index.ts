@@ -12,3 +12,41 @@ export interface DocumentItem {
   decisionsFound?: number;
   errorMessage?: string;
 }
+
+export type DecisionStatus = "confirmed" | "pending" | "rejected" | "draft";
+
+export interface EvidenceItem {
+  id: string;
+  documentName: string;
+  section?: string;
+  page?: number;
+  passage: string;
+  uploadedAt: string;
+}
+
+export interface DecisionItem {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  status: DecisionStatus;
+  project?: string;
+  people: string[];
+  reasons: string[];
+  alternatives: string[];
+  outcome?: string;
+  needsReview?: boolean;
+  evidence: EvidenceItem[];
+}
+
+export type TimelineEventKind = "proposal" | "analysis" | "decision" | "change" | "review";
+
+export interface TimelineEvent {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+  kind: TimelineEventKind;
+  decisionId?: string;
+  sourceDocument?: string;
+}
