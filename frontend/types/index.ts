@@ -95,3 +95,21 @@ export interface PositionedNode extends GraphNode {
   x: number;
   y: number;
 }
+
+export interface ChatCitation {
+  id: string;
+  documentName: string;
+  section?: string;
+  page?: number;
+  passage: string;
+  decisionId: string;
+  decisionTitle: string;
+}
+
+export interface ChatMessageItem {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  citations?: ChatCitation[];
+  uncertain?: boolean;
+}
