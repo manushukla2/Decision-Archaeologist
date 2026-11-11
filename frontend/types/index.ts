@@ -50,3 +50,48 @@ export interface TimelineEvent {
   decisionId?: string;
   sourceDocument?: string;
 }
+
+export type GraphNodeType =
+  | "decision"
+  | "person"
+  | "document"
+  | "event"
+  | "project"
+  | "reason"
+  | "alternative"
+  | "outcome";
+
+export type GraphRelation =
+  | "MADE_BY"
+  | "SUPPORTED_BY"
+  | "REJECTED_BECAUSE"
+  | "DISCUSSED_IN"
+  | "RELATED_TO"
+  | "REPLACED_BY"
+  | "CAUSED"
+  | "PARTICIPATED_IN"
+  | "OCCURRED_DURING";
+
+export interface GraphNode {
+  id: string;
+  label: string;
+  type: GraphNodeType;
+  decisionId?: string;
+}
+
+export interface GraphEdge {
+  id: string;
+  source: string;
+  target: string;
+  relation: GraphRelation;
+}
+
+export interface GraphData {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+}
+
+export interface PositionedNode extends GraphNode {
+  x: number;
+  y: number;
+}
